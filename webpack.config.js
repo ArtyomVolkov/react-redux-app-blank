@@ -1,26 +1,24 @@
-const webpack = require('webpack');
+require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const HOST = 'localhost';
-const PORT = '1111';
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 // Loaders
 const RULES = {
   styles: {
     test: /\.scss$/,
     use: ExtractTextPlugin.extract({
-      use: [ {
-        loader: "css-loader",
+      use: [{
+        loader: 'css-loader',
         options: {
-          sourceMap: true,
+          sourceMap: false,
           minimize: true,
           url: false
         }
       },
         {
-          loader: "sass-loader",
+          loader: 'sass-loader',
           options: {
-            sourceMap: true
+            sourceMap: false
           }
         }
       ]
@@ -32,7 +30,7 @@ const RULES = {
     use: {
       loader: 'babel-loader',
       options: {
-        presets: [ 'es2015', 'react', 'stage-2' ],
+        presets: ['es2016', 'react', 'stage-2'],
         plugins: []
       }
     }
@@ -45,25 +43,16 @@ const MODULE = {
     RULES.scripts
   ]
 };
-// Webpack DevServer
-const DEV_SERVER = {
-  contentBase: './build',
-  hot: true,
-  inline: true,
-  quiet: false,
-  noInfo: false,
-  historyApiFallback: true,
-  host: HOST,
-  port: PORT,
-  stats: {
-    colors: true
-  }
-};
 // Plugins
 const PLUGINS = [
+  new HTMLWebpackPlugin({
+    template: __dirname + '/src/index.html',
+    filename: 'index.html',
+    inject: 'body'
+  }),
   new ExtractTextPlugin({
-    filename: './style.bundle.css',
-    allChunks: true,
+    filename: 'style.bundle.css',
+    allChunks: true
   })
 ];
 // CONFIG
@@ -72,19 +61,16 @@ module.exports = {
     './src/index.js',
     './src/app/styles/main.scss'
   ],
-  devtool: 'inline-source-map',
   output: {
     filename: 'main.min.js',
-    path: path.resolve('./build'),
-    publicPath: '/'
+    path: path.resolve(__dirname, 'build')
   },
   resolve: {
-    extensions: [ '.js', '.scss' ],
+    extensions: ['.js', '.scss'],
     modules: [
       path.resolve(__dirname, 'node_modules')
     ]
   },
-  devServer: DEV_SERVER,
   module: MODULE,
   plugins: PLUGINS,
   stats: {

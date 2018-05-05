@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // Styles
 import './style.scss';
 
@@ -29,24 +29,18 @@ class Footer extends Component {
         key: 'ES6',
         title: 'ES6',
         imageURL: 'https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/049/full/EGH_LearnES6_Final.png',
-        link: 'http://es6-features.org',
+        link: 'http://es6-features.org'
       },
       {
         key: 'sass',
         title: 'Sass',
         imageURL: 'http://thimblecss.com/images/sass.png',
         link: 'https://sass-lang.com'
-      },
-      {
-        key: 'mui',
-        title: 'Material UI',
-        imageURL: 'https://seeklogo.com/images/M/material-ui-logo-527EE4ADD9-seeklogo.com.png',
-        link: 'https://www.material-ui.com',
       }
     ];
   }
 
-  onOpenDetails (e, item){
+  onOpenDetails (e, item) {
     window.open(item.link);
   }
 

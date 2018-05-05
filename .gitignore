@@ -1,5 +1,5 @@
 .idea
 node_modules
+build
 style.bundle.css
-*.min.js
 *.log

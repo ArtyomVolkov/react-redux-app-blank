@@ -1,22 +1,11 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
-// Pages
-import Dashboard from '../../pages/dashboard/index';
-
-import Page404 from '../../pages/404/Page404';
+import React, {Component} from 'react';
+import IndexRoute from '../../routes';
 
 class Main extends Component {
-  render() {
+  render () {
     return (
       <main>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Dashboard}/>
-            <Route path="/dashboard" component={Dashboard}/>
-            <Route path="*" component={Page404}/>
-          </Switch>
-        </BrowserRouter>
+        <IndexRoute/>
       </main>
     );
   }
